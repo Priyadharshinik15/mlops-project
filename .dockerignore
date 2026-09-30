@@ -1,0 +1,14 @@
+mlops-traffic/
+venv/
+.venv/
+__pycache__/
+*.pyc
+notebooks/
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+.git/
+.dvc/cache
+mlruns/
+monitoring/drift_report.html

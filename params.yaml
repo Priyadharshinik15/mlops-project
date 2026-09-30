@@ -1,0 +1,7 @@
+train:
+  n_estimators: 1500
+  learning_rate: 0.05
+  max_depth: 8
+  min_child_weight: 3
+  subsample: 0.90
+  colsample_bytree: 0.90

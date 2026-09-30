@@ -1,0 +1,44 @@
+stages:
+  preprocess:
+    cmd: python src/data/preprocess.py
+    deps:
+      - src/data/preprocess.py
+      - data/raw/ml_data_holiday.parquet
+    outs:
+      - data/processed/cleaned.parquet
+      - models/preprocessing/holiday_type_encoder.json
+
+  build_features:
+    cmd: python src/features/build_features.py
+    deps:
+      - src/features/build_features.py
+      - data/processed/cleaned.parquet
+    outs:
+      - data/processed/features.parquet
+      - models/preprocessing/feature_list.json
+
+  train:
+    cmd: python src/models/train.py
+    deps:
+      - src/models/train.py
+      - data/processed/features.parquet
+    outs:
+      - models/xgboost_congestion_model.json
+      - models/_test_split.parquet
+    params:
+      - train.n_estimators
+      - train.learning_rate
+      - train.max_depth
+      - train.min_child_weight
+      - train.subsample
+      - train.colsample_bytree
+
+  evaluate:
+    cmd: python src/models/evaluate.py
+    deps:
+      - src/models/evaluate.py
+      - models/xgboost_congestion_model.json
+      - models/_test_split.parquet
+    metrics:
+      - metrics.json:
+          cache: false

@@ -1,0 +1,55 @@
+# Data
+data/raw/*
+data/processed/*
+data/external/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/external/.gitkeep
+*.parquet
+*.csv
+
+# Models
+models/*.json
+models/*.pkl
+models/preprocessing/*
+!models/preprocessing/.gitkeep
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# DVC
+.dvc/cache
+.dvc/tmp
+
+# Metrics / reports
+metrics.json
+monitoring/drift_report.html
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Env
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+# MLflow
+mlruns/
+mlartifacts/
+mlflow.db
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+mlops-traffic/
+*.egg-info/
