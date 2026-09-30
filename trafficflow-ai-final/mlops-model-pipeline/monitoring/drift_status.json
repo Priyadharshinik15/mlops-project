@@ -1,0 +1,21 @@
+{
+  "drift_detected": true,
+  "drift_share": 0.625,
+  "drifted_features": [
+    "probeCount",
+    "avg_temp",
+    "wind_speed",
+    "air_pressure",
+    "rainfall"
+  ],
+  "per_feature": {
+    "speedLimit": false,
+    "distance": false,
+    "probeCount": true,
+    "hour": false,
+    "avg_temp": true,
+    "wind_speed": true,
+    "air_pressure": true,
+    "rainfall": true
+  }
+}

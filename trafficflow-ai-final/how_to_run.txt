@@ -1,0 +1,86 @@
+═══════════════════════════════════════════════════════════════
+  TrafficOps AI — Complete Run Guide
+  (MLOps + FastAPI Backend + React Frontend integrated)
+═══════════════════════════════════════════════════════════════
+
+PROJECT FOLDER:
+  C:\Users\priya\OneDrive\Desktop\traffic_flow _AI_final\trafficflow-ai-final
+
+─────────────────────────────────────────────────────────────
+TERMINAL 1 — Start the FastAPI Backend (Port 8000)
+─────────────────────────────────────────────────────────────
+
+cd "C:\Users\priya\OneDrive\Desktop\traffic_flow _AI_final\trafficflow-ai-final\backend"
+
+.\venv\Scripts\activate
+
+uvicorn app.main:app --reload --port 8000
+
+  ✅ Backend runs at:  http://localhost:8000
+  ✅ API docs at:      http://localhost:8000/docs
+  ✅ Health check:     http://localhost:8000/api/health
+  ✅ WebSocket:        ws://localhost:8000/ws/live
+
+  The backend will automatically:
+  - Load the XGBoost model from ../mlops-model-pipeline/models/
+  - Fall back to rule-based simulation if model is not found
+  - Simulate realistic Chennai traffic data (no API keys needed)
+  - Use real TomTom + OpenWeather data if keys are set in .env
+
+─────────────────────────────────────────────────────────────
+TERMINAL 2 — Start the React Frontend (Port 8080)
+─────────────────────────────────────────────────────────────
+
+cd "C:\Users\priya\OneDrive\Desktop\traffic_flow _AI_final\trafficflow-ai-final\frontend"
+
+npm run dev
+
+  ✅ Frontend runs at:  http://localhost:8080
+
+─────────────────────────────────────────────────────────────
+OPEN IN BROWSER
+─────────────────────────────────────────────────────────────
+
+  http://localhost:8080
+
+─────────────────────────────────────────────────────────────
+FIRST-TIME SETUP (only if packages are missing)
+─────────────────────────────────────────────────────────────
+
+Backend (if venv not set up yet):
+  cd "C:\Users\priya\OneDrive\Desktop\traffic_flow _AI_final\trafficflow-ai-final\backend"
+  python -m venv venv
+  .\venv\Scripts\activate
+  pip install -r requirements.txt
+
+Frontend (if node_modules not present):
+  cd "C:\Users\priya\OneDrive\Desktop\traffic_flow _AI_final\trafficflow-ai-final\frontend"
+  npm install
+
+─────────────────────────────────────────────────────────────
+INTEGRATION STATUS
+─────────────────────────────────────────────────────────────
+
+  ✅ XGBoost model loaded from mlops-model-pipeline/models/
+  ✅ 15-feature vector built per road (speed, weather, time, holiday)
+  ✅ 60-minute congestion forecast using XGBoost
+  ✅ Model Monitor: real MAE, RMSE, accuracy, PSI drift, feature importances
+  ✅ WebSocket live updates every 5 seconds
+  ✅ Full simulation fallback (works without API keys)
+  ✅ Frontend connects to backend at http://localhost:8000
+  ✅ CORS allows localhost:8080 (frontend dev port)
+
+─────────────────────────────────────────────────────────────
+OPTIONAL: Add Real API Keys (for live data)
+─────────────────────────────────────────────────────────────
+
+Edit: backend/.env
+
+  OPENWEATHER_API_KEY="your_real_openweather_key"
+  TOMTOM_API_KEY="your_real_tomtom_key"
+
+  Free keys available at:
+  - https://openweathermap.org/api  (free tier: 60 calls/min)
+  - https://developer.tomtom.com   (free tier: 2500 calls/day)
+
+═══════════════════════════════════════════════════════════════
